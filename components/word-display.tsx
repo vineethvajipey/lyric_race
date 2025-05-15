@@ -3,13 +3,16 @@
 import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 
-export interface WordDisplayProps {
-  words: { word: string; correct: boolean; timestamp?: number }[];
-  showParticles?: boolean;
-  fadeDuration?: number; // ms
+interface WordDisplayProps {
+  words: {
+    word: string
+    correct: boolean
+    original?: string
+  }[]
+  showParticles?: boolean
 }
 
-export function WordDisplay({ words, showParticles = true, fadeDuration }: WordDisplayProps) {
+export function WordDisplay({ words, showParticles = true }: WordDisplayProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -21,31 +24,19 @@ export function WordDisplay({ words, showParticles = true, fadeDuration }: WordD
   return (
     <div ref={containerRef} className="overflow-y-auto max-h-[300px] p-4">
       <div className="flex flex-wrap gap-1">
-        {words.map((word, index) => {
-          let opacity = 1;
-          let transition = {};
-          if (fadeDuration && word.timestamp) {
-            const msLeft = fadeDuration - (Date.now() - word.timestamp);
-            // Fade out in the last 1s
-            if (msLeft < 1000) {
-              opacity = Math.max(msLeft / 1000, 0);
-              transition = { opacity: { duration: msLeft / 1000 } };
-            }
-          }
-          return (
-            <div key={index} className="relative">
-              <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity, y: 0 }}
-                transition={transition}
-                className={`text-xl ${word.correct ? "text-green-500 font-medium" : "text-foreground"}`}
-              >
-                {word.word}
-              </motion.span>
-              {word.correct && showParticles && <ParticleEffect />}
-            </div>
-          );
-        })}
+        {words.map((word, index) => (
+          <div key={index} className="relative">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`text-xl ${word.correct ? "text-green-500 font-medium" : "text-foreground"}`}
+            >
+              {word.word}
+            </motion.span>
+
+            {word.correct && showParticles && <ParticleEffect />}
+          </div>
+        ))}
       </div>
     </div>
   )

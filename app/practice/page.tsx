@@ -9,45 +9,48 @@ import { useSpeechRecognition } from "@/hooks/use-speech-recognition"
 import { WordDisplay } from "@/components/word-display"
 
 export default function PracticePage() {
-  // Each word now has a timestamp
-  const [processedWords, setProcessedWords] = useState<{ word: string; correct: boolean; timestamp: number }[]>([])
-  const { transcript, resetTranscript, startListening, stopListening, browserSupportsSpeechRecognition } = useSpeechRecognition()
+  const [isListening, setIsListening] = useState(false)
+  const [processedWords, setProcessedWords] = useState<{ word: string; correct: boolean }[]>([])
+
+  const { transcript, resetTranscript, startListening, stopListening, browserSupportsSpeechRecognition } =
+    useSpeechRecognition()
+
   const wordsRef = useRef<HTMLDivElement>(null)
 
-  // Start listening automatically on mount
-  useEffect(() => {
-    startListening()
-    return () => stopListening()
-  }, [startListening, stopListening])
-
-  // Add new words with timestamp
+  // Process transcript into words
   useEffect(() => {
     if (transcript) {
-      const now = Date.now()
-      const words = transcript.split(" ").filter(Boolean).map((word) => ({
+      const words = transcript.split(" ").map((word) => ({
         word,
-        correct: true,
-        timestamp: now
+        correct: true, // In practice mode, all words are marked as correct
       }))
-      // Add new words to the list
-      setProcessedWords((prev) => [...prev, ...words])
+      setProcessedWords(words)
     }
   }, [transcript])
-
-  // Remove words older than 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const cutoff = Date.now() - 5000
-      setProcessedWords((prev) => prev.filter((w) => w.timestamp > cutoff))
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [])
 
   useEffect(() => {
     if (wordsRef.current) {
       wordsRef.current.scrollTop = wordsRef.current.scrollHeight
     }
   }, [processedWords])
+
+  const toggleListening = () => {
+    if (isListening) {
+      stopListening()
+      setIsListening(false)
+    } else {
+      resetTranscript()
+      startListening()
+      setIsListening(true)
+    }
+  }
+
+  const handleReset = () => {
+    resetTranscript()
+    stopListening()
+    setIsListening(false)
+    setProcessedWords([])
+  }
 
   if (!browserSupportsSpeechRecognition) {
     return (
@@ -87,12 +90,37 @@ export default function PracticePage() {
           className="flex-1 bg-muted/30 rounded-lg p-6 mb-6 overflow-y-auto min-h-[300px] max-h-[60vh]"
         >
           {processedWords.length > 0 ? (
-            <WordDisplay words={processedWords} fadeDuration={5000} />
+            <WordDisplay words={processedWords} />
           ) : (
             <p className="text-muted-foreground text-center mt-12">
-              Speak now...
+              {isListening ? "Speak now..." : "Press the microphone button to start speaking"}
             </p>
           )}
+        </div>
+
+        <div className="flex justify-center gap-4">
+          <Button
+            onClick={toggleListening}
+            size="lg"
+            variant={isListening ? "destructive" : "default"}
+            className="gap-2 w-40"
+          >
+            {isListening ? (
+              <>
+                <MicOff className="h-5 w-5" />
+                Stop
+              </>
+            ) : (
+              <>
+                <Mic className="h-5 w-5" />
+                Start
+              </>
+            )}
+          </Button>
+
+          <Button onClick={handleReset} variant="outline" size="lg" className="w-40">
+            Reset
+          </Button>
         </div>
       </main>
     </div>
