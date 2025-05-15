@@ -14,23 +14,6 @@ export default function Home() {
           <h2 className="text-2xl font-semibold">Pick Your Track</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
-              href="/game?song=rap_god"
-              className="group relative overflow-hidden rounded-lg border p-2 hover:border-foreground/20 transition-colors"
-            >
-              <div className="rounded-md aspect-video overflow-hidden flex items-center justify-center bg-muted">
-  <img
-    src="/rap_god_cover.jpg"
-    alt="Rap God cover art"
-    className="object-cover w-full h-full"
-    style={{ aspectRatio: '16/9' }}
-  />
-</div>
-              <div className="mt-2">
-                <h3 className="font-medium">Rap God</h3>
-              </div>
-            </Link>
-
-            <Link
               href="/game?song=birds_of_feather"
               className="group relative overflow-hidden rounded-lg border p-2 hover:border-foreground/20 transition-colors"
             >
@@ -38,6 +21,23 @@ export default function Home() {
   <img
     src="/birds_of_a_feather_cover.jpeg"
     alt="Birds of a Feather cover art"
+    className="object-cover w-full h-full"
+    style={{ aspectRatio: '16/9' }}
+  />
+</div>
+              <div className="mt-2">
+                <h3 className="font-medium">Birds of a Feather</h3>
+              </div>
+            </Link>
+
+            <Link
+              href="/game?song=rap_god"
+              className="group relative overflow-hidden rounded-lg border p-2 hover:border-foreground/20 transition-colors"
+            >
+              <div className="rounded-md aspect-video overflow-hidden flex items-center justify-center bg-muted">
+  <img
+    src="/rap_god_cover.jpg"
+    alt="Rap God cover art"
     className="object-cover w-full h-full"
     style={{ aspectRatio: '16/9' }}
   />
