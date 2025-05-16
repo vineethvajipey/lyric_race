@@ -2,7 +2,12 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-export default function SelfieVideo() {
+interface SelfieVideoProps {
+  fullScreen?: boolean;
+  className?: string;
+}
+
+export default function SelfieVideo({ fullScreen = false, className = "" }: SelfieVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,9 +31,21 @@ export default function SelfieVideo() {
     };
   }, []);
 
+  const containerClasses = fullScreen
+    ? "absolute inset-0 z-0 w-full h-full overflow-hidden bg-black"
+    : "flex flex-col items-center mb-4";
+
+  const videoContainerClasses = fullScreen
+    ? "w-full h-full"
+    : "rounded-lg overflow-hidden border-2 border-primary bg-black w-40 h-40 flex items-center justify-center relative";
+
+  const videoClasses = fullScreen
+    ? "w-full h-full object-cover"
+    : "w-full h-full object-cover";
+
   return (
-    <div className="flex flex-col items-center mb-4">
-      <div className="rounded-lg overflow-hidden border-2 border-primary bg-black w-40 h-40 flex items-center justify-center">
+    <div className={`${containerClasses} ${className}`}>
+      <div className={videoContainerClasses}>
         {error ? (
           <span className="text-red-500 text-xs p-2 text-center">{error}</span>
         ) : (
@@ -37,8 +54,9 @@ export default function SelfieVideo() {
             autoPlay
             muted
             playsInline
-            className="w-40 h-40 object-cover"
+            className={videoClasses}
             aria-label="Your live selfie video"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         )}
       </div>

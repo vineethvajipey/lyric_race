@@ -11,6 +11,7 @@ import { useSpeechRecognition } from "@/hooks/use-speech-recognition"
 import { AudioPlayer } from "@/components/audio-player"
 import { WordDisplay } from "@/components/word-display"
 import SelfieVideo from "@/components/SelfieVideo"
+import { LyricsOverlay } from "@/components/lyrics-overlay"
 
 import { compareWords, calculateAccuracy, getCurrentLyricLine, normalizeText } from "@/lib/lyrics-utils"
 import { LyricsToggle } from "@/components/lyrics-toggle"
@@ -172,7 +173,9 @@ export default function GamePage() {
               </p>
             </div>
 
-            
+            <div className="mb-4">
+              <SelfieVideo />
+            </div>
 
             <Button onClick={startGame} size="lg" className="gap-2">
               <Play className="h-5 w-5" />
@@ -183,31 +186,67 @@ export default function GamePage() {
 
         {gameState === "playing" && (
   <div className="flex-1 flex flex-col">
-    {/* Selfie video at the top */}
-    <SelfieVideo />
-    <div className="bg-muted/30 rounded-lg p-6 mb-6 flex-1 min-h-[300px] overflow-hidden">
-      <div className="mb-4 pb-4 border-b">
-        <div className="flex justify-between items-center mb-2">
-          <p className="text-sm text-muted-foreground">Current Lyrics:</p>
-          <LyricsToggle showLyrics={showLyrics} onToggle={() => setShowLyrics(!showLyrics)} />
-        </div>
-        <div ref={lyricsRef} className="text-lg font-medium overflow-y-auto max-h-[100px]">
-          {showLyrics
-            ? currentLyric || "Waiting for lyrics..."
-            : "Lyrics hidden. Click 'Show Lyrics' to reveal."}
+    {/* Current lyrics display - above the video */}
+    {showLyrics && (
+      <div className="mb-3 max-w-xl mx-auto w-full px-4">
+        <div className="bg-muted/30 rounded-lg p-4">
+          <div className="flex justify-between items-center mb-2">
+            <p className="text-sm text-muted-foreground">Current Lyrics:</p>
+            <LyricsToggle showLyrics={showLyrics} onToggle={() => setShowLyrics(!showLyrics)} />
+          </div>
+          <div ref={lyricsRef} className="text-lg font-medium overflow-y-auto max-h-[80px]">
+            {currentLyric || "Waiting for lyrics..."}
+          </div>
         </div>
       </div>
-      <div>
-        <p className="text-sm text-muted-foreground">Your Words:</p>
-        <WordDisplay words={processedWords} />
+    )}
+    
+    {/* Video container */}
+    <div className="flex flex-col items-center mb-4">
+      <div className="w-full max-w-lg mx-auto relative rounded-lg overflow-hidden">
+        <div className="aspect-square bg-black">
+          <div className="absolute inset-0 w-full h-full">
+            <SelfieVideo fullScreen={true} />
+          </div>
+        </div>
+        
+        {/* Only the transcript overlay */}
+        <div className="absolute inset-0 z-10">
+          <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col justify-end pointer-events-none">
+            <div className="p-3 bg-gradient-to-t from-black/80 to-transparent">
+              <div className="flex justify-center">
+                <div className="text-white">
+                  <WordDisplay 
+                    words={processedWords.map(word => ({
+                      ...word,
+                      correct: word.correct
+                    }))}
+                    showParticles={true}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Show lyrics toggle when lyrics are hidden */}
+        {!showLyrics && (
+          <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-black/50 p-2 rounded-lg">
+            <LyricsToggle showLyrics={showLyrics} onToggle={() => setShowLyrics(!showLyrics)} />
+          </div>
+        )}
       </div>
     </div>
-    <div className="space-y-4">
-      <AudioPlayer src={song.audioSrc} onTimeUpdate={handleTimeUpdate} onEnded={endGame} autoPlay={true} />
-      <div className="flex justify-center">
-        <Button onClick={endGame} variant="outline" size="lg">
-          End Performance
-        </Button>
+    
+    {/* Audio player and end button */}
+    <div className="px-4 max-w-xl mx-auto w-full">
+      <div className="p-4 rounded-lg space-y-4 bg-muted/30">
+        <AudioPlayer src={song.audioSrc} onTimeUpdate={handleTimeUpdate} onEnded={endGame} autoPlay={true} />
+        <div className="flex justify-center">
+          <Button onClick={endGame} variant="outline" size="lg">
+            End Performance
+          </Button>
+        </div>
       </div>
     </div>
   </div>
@@ -222,8 +261,6 @@ export default function GamePage() {
               className="bg-muted/30 p-8 rounded-lg"
             >
               <h2 className="text-3xl font-bold">Your Score: {score}%</h2>
-
-              
             </motion.div>
 
             <div className="bg-muted/30 rounded-lg p-6 w-full max-w-md">
