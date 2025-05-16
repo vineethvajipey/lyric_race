@@ -1,0 +1,25 @@
+{
+  "id": "birds_of_feather",
+  "title": "Birds of a Feather",
+  "artist": "Billie Eilish",
+  "audioSrc": "/audio/birds_of_a_feather_instrumental.mp3",
+  "bpm": 95,
+  "difficulty": "easy",
+  "coverArt": "/covers/birds_of_a_feather_cover.jpeg",
+  "lyrics": [
+    { "text": "I want you to stay", "startTime": 0.0, "endTime": 5.5 },
+    { "text": "'Til I'm in the grave", "startTime": 5.5, "endTime": 10.5 },
+    { "text": "'Til I rot away, dead and buried", "startTime": 10.5, "endTime": 13.5 },
+    { "text": "'Til I'm in the casket you carry", "startTime": 13.5, "endTime": 15.0 },
+    { "text": "If you go, I'm going too, uh", "startTime": 16.0, "endTime": 16.0 },
+    { "text": "'Cause it was always you, alright", "startTime": 17.5, "endTime": 19.0 },
+    { "text": "And if I'm turnin' blue, please don't save me", "startTime": 19.0, "endTime": 21.0 },
+    { "text": "Nothing left to lose without my baby", "startTime": 21.0, "endTime": 22.0 },
+    { "text": "Birds of a feather, we should stick together, I know", "startTime": 22.0, "endTime": 25.0 },
+    { "text": "I said I'd never think I wasn't better alone", "startTime": 25.0, "endTime": 28.0 },
+    { "text": "Can't change the weather, might not be forever", "startTime": 28.0, "endTime": 31.0 },
+    { "text": "But if it's forever, it's even better", "startTime": 31.0, "endTime": 34.0 },
+    { "text": "And I don't know what I'm cryin' for", "startTime": 34.0, "endTime": 36.5 },
+    { "text": "I don't think I could love you more", "startTime": 36.5, "endTime": 39.0 }
+  ]
+}

@@ -8,6 +8,8 @@ interface SpeechRecognitionResult {
   startListening: () => void
   stopListening: () => void
   browserSupportsSpeechRecognition: boolean
+  isListening: boolean
+  error: string | null
 }
 
 // Define the SpeechRecognition type
@@ -32,6 +34,8 @@ export function useSpeechRecognition(): SpeechRecognitionResult {
   const [transcript, setTranscript] = useState("")
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null)
   const [browserSupports, setBrowserSupports] = useState(false)
+  const [isListening, setIsListening] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -59,11 +63,26 @@ export function useSpeechRecognition(): SpeechRecognitionResult {
 
           setTranscript((prev) => finalTranscript + interimTranscript)
         }
+        
+        recognitionInstance.onstart = () => {
+          setIsListening(true)
+        }
+        
+        recognitionInstance.onend = () => {
+          setIsListening(false)
+        }
+        
+        recognitionInstance.onerror = (event) => {
+          console.error("Speech recognition error:", event)
+          setError("An error occurred with speech recognition.")
+          setIsListening(false)
+        }
 
         setRecognition(recognitionInstance)
         setBrowserSupports(true)
       } else {
         setBrowserSupports(false)
+        setError("Your browser does not support speech recognition.")
       }
     }
 
@@ -77,9 +96,11 @@ export function useSpeechRecognition(): SpeechRecognitionResult {
   const startListening = useCallback(() => {
     if (recognition) {
       try {
+        setTranscript("") // Reset transcript when starting
         recognition.start()
       } catch (error) {
         console.error("Error starting speech recognition:", error)
+        setError("Failed to start speech recognition.")
       }
     }
   }, [recognition])
@@ -92,6 +113,7 @@ export function useSpeechRecognition(): SpeechRecognitionResult {
 
   const resetTranscript = useCallback(() => {
     setTranscript("")
+    setError(null)
   }, [])
 
   return {
@@ -100,5 +122,7 @@ export function useSpeechRecognition(): SpeechRecognitionResult {
     startListening,
     stopListening,
     browserSupportsSpeechRecognition: browserSupports,
+    isListening,
+    error
   }
 }

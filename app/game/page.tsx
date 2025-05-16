@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button"
 import { useSpeechRecognition } from "@/hooks/use-speech-recognition"
 import { AudioPlayer } from "@/components/audio-player"
 import { WordDisplay } from "@/components/word-display"
-import { getSong } from "@/lib/song-data"
+import SelfieVideo from "@/components/SelfieVideo"
+
 import { compareWords, calculateAccuracy, getCurrentLyricLine, normalizeText } from "@/lib/lyrics-utils"
 import { LyricsToggle } from "@/components/lyrics-toggle"
 
@@ -25,24 +26,35 @@ export default function GamePage() {
   const [currentLyric, setCurrentLyric] = useState("")
   const [processedWords, setProcessedWords] = useState<{ word: string; correct: boolean }[]>([])
   const [totalWords, setTotalWords] = useState(0)
-  const [showLyrics, setShowLyrics] = useState(false)
+  const [showLyrics, setShowLyrics] = useState(true)
 
-  const { transcript, resetTranscript, startListening, stopListening, browserSupportsSpeechRecognition } =
+  const { transcript, resetTranscript, startListening, stopListening, browserSupportsSpeechRecognition, isListening, error } =
     useSpeechRecognition()
 
-  const song = songId ? getSong(songId) : undefined
-  const lyricsRef = useRef<HTMLDivElement>(null)
+  const [song, setSong] = useState<any>(undefined);
+  const lyricsRef = useRef<HTMLDivElement>(null);
 
-  // Validate song selection
+  // Fetch song data from API
   useEffect(() => {
-    if (!songId || !song) {
-      router.push("/")
-    } else {
-      // Count total words in all lyrics for scoring
-      const allLyrics = song.lyrics.map((line) => line.text).join(" ")
-      setTotalWords(normalizeText(allLyrics).split(" ").length)
+    if (!songId) {
+      router.push("/");
+      return;
     }
-  }, [songId, song, router])
+    fetch(`/api/songs/${songId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Song not found');
+        return res.json();
+      })
+      .then((data) => {
+        setSong(data);
+        // Count total words in all lyrics for scoring
+        const allLyrics = data.lyrics.map((line: any) => line.text).join(" ");
+        setTotalWords(normalizeText(allLyrics).split(" ").length);
+      })
+      .catch(() => {
+        router.push("/");
+      });
+  }, [songId, router]);
 
   // Update current lyric based on time
   useEffect(() => {
@@ -95,12 +107,29 @@ export default function GamePage() {
     setCurrentTime(0)
   }
 
+  if (error) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center p-4">
+        <div className="max-w-md w-full text-center space-y-4">
+          <h1 className="text-2xl font-bold">Speech Recognition Error</h1>
+          <p className="text-red-500">{error}</p>
+          <Link href="/">
+            <Button variant="outline" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   if (!browserSupportsSpeechRecognition) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center p-4">
         <div className="max-w-md w-full text-center space-y-4">
           <h1 className="text-2xl font-bold">Speech Recognition Not Supported</h1>
-          <p>Your browser doesn't support speech recognition. Please try using Chrome, Edge, or Safari.</p>
+          <p>Your browser doesn't support microphone access. Please try using a different browser.</p>
           <Link href="/">
             <Button variant="outline" className="gap-2">
               <ArrowLeft className="h-4 w-4" />
@@ -119,17 +148,18 @@ export default function GamePage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <header className="border-b p-4">
-        <div className="container flex items-center justify-between">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Back
-            </Button>
-          </Link>
-          <h1 className="text-xl font-bold">{song.title}</h1>
-          <div className="w-20"></div> {/* Spacer for centering */}
-        </div>
-      </header>
+  <div className="container relative flex items-center justify-between">
+    <Link href="/">
+      <Button variant="ghost" size="sm" className="gap-2">
+        <ArrowLeft className="h-4 w-4" />
+        Back
+      </Button>
+    </Link>
+    <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold whitespace-nowrap pointer-events-none select-none">
+      {song.title}
+    </h1>
+  </div>
+</header>
 
       <main className="flex-1 container max-w-3xl mx-auto p-4 flex flex-col">
         {gameState === "ready" && (
@@ -152,37 +182,36 @@ export default function GamePage() {
         )}
 
         {gameState === "playing" && (
-          <div className="flex-1 flex flex-col">
-            <div className="bg-muted/30 rounded-lg p-6 mb-6 flex-1 min-h-[300px] overflow-hidden">
-              <div className="mb-4 pb-4 border-b">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-sm text-muted-foreground">Current Lyrics:</p>
-                  <LyricsToggle showLyrics={showLyrics} onToggle={() => setShowLyrics(!showLyrics)} />
-                </div>
-                <div ref={lyricsRef} className="text-lg font-medium overflow-y-auto max-h-[100px]">
-                  {showLyrics
-                    ? currentLyric || "Waiting for lyrics..."
-                    : "Lyrics hidden. Click 'Show Lyrics' to reveal."}
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm text-muted-foreground">Your Words:</p>
-                <WordDisplay words={processedWords} />
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <AudioPlayer src={song.audioSrc} onTimeUpdate={handleTimeUpdate} onEnded={endGame} autoPlay={true} />
-
-              <div className="flex justify-center">
-                <Button onClick={endGame} variant="outline" size="lg">
-                  End Performance
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
+  <div className="flex-1 flex flex-col">
+    {/* Selfie video at the top */}
+    <SelfieVideo />
+    <div className="bg-muted/30 rounded-lg p-6 mb-6 flex-1 min-h-[300px] overflow-hidden">
+      <div className="mb-4 pb-4 border-b">
+        <div className="flex justify-between items-center mb-2">
+          <p className="text-sm text-muted-foreground">Current Lyrics:</p>
+          <LyricsToggle showLyrics={showLyrics} onToggle={() => setShowLyrics(!showLyrics)} />
+        </div>
+        <div ref={lyricsRef} className="text-lg font-medium overflow-y-auto max-h-[100px]">
+          {showLyrics
+            ? currentLyric || "Waiting for lyrics..."
+            : "Lyrics hidden. Click 'Show Lyrics' to reveal."}
+        </div>
+      </div>
+      <div>
+        <p className="text-sm text-muted-foreground">Your Words:</p>
+        <WordDisplay words={processedWords} />
+      </div>
+    </div>
+    <div className="space-y-4">
+      <AudioPlayer src={song.audioSrc} onTimeUpdate={handleTimeUpdate} onEnded={endGame} autoPlay={true} />
+      <div className="flex justify-center">
+        <Button onClick={endGame} variant="outline" size="lg">
+          End Performance
+        </Button>
+      </div>
+    </div>
+  </div>
+)}
 
         {gameState === "finished" && (
           <div className="flex-1 flex flex-col items-center justify-center text-center gap-6">

@@ -9,10 +9,9 @@ import { useSpeechRecognition } from "@/hooks/use-speech-recognition"
 import { WordDisplay } from "@/components/word-display"
 
 export default function PracticePage() {
-  const [isListening, setIsListening] = useState(false)
   const [processedWords, setProcessedWords] = useState<{ word: string; correct: boolean }[]>([])
 
-  const { transcript, resetTranscript, startListening, stopListening, browserSupportsSpeechRecognition } =
+  const { transcript, resetTranscript, startListening, stopListening, browserSupportsSpeechRecognition, isListening, error } =
     useSpeechRecognition()
 
   const wordsRef = useRef<HTMLDivElement>(null)
@@ -37,19 +36,33 @@ export default function PracticePage() {
   const toggleListening = () => {
     if (isListening) {
       stopListening()
-      setIsListening(false)
     } else {
       resetTranscript()
       startListening()
-      setIsListening(true)
     }
   }
 
   const handleReset = () => {
     resetTranscript()
     stopListening()
-    setIsListening(false)
     setProcessedWords([])
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center p-4">
+        <div className="max-w-md w-full text-center space-y-4">
+          <h1 className="text-2xl font-bold">Speech Recognition Error</h1>
+          <p className="text-red-500">{error}</p>
+          <Link href="/">
+            <Button variant="outline" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   if (!browserSupportsSpeechRecognition) {

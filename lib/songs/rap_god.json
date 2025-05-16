@@ -1,0 +1,29 @@
+{
+  "id": "rap_god",
+  "title": "Rap God",
+  "artist": "Eminem",
+  "audioSrc": "/audio/rap_god_instrumental.mp3",
+  "bpm": 148,
+  "difficulty": "hard",
+  "coverArt": "/covers/rap_god_cover.jpg",
+  "lyrics": [
+    { "text": "Look, I was gonna go easy on you not to hurt your feelings", "startTime": 0, "endTime": 4 },
+    { "text": "But I'm only goin' to get this one chance", "startTime": 4, "endTime": 8 },
+    { "text": "(Six minutes, six minutes)", "startTime": 8, "endTime": 10 },
+    { "text": "Something's wrong, I can feel it", "startTime": 10, "endTime": 12 },
+    { "text": "(Six minutes, Slim Shady, you're on)", "startTime": 12, "endTime": 14 },
+    { "text": "Just a feelin' I've got, like something's about to happen, but I don't know what", "startTime": 14, "endTime": 18 },
+    { "text": "(Six minutes, six, six minutes)", "startTime": 18, "endTime": 20 },
+    { "text": "If that means what I think it means, we're in trouble, big trouble", "startTime": 20, "endTime": 24 },
+    { "text": "And if he is as bananas as you say, I'm not takin' any chances", "startTime": 24, "endTime": 27 },
+    { "text": "(You are just what the doc ordered)", "startTime": 27, "endTime": 29 },
+    { "text": "I'm beginnin' to feel like a Rap God, Rap God", "startTime": 29, "endTime": 32 },
+    { "text": "All my people from the front to the back nod, back nod", "startTime": 32, "endTime": 35 },
+    { "text": "Now, who thinks their arms are long enough to slap box, slap box?", "startTime": 35, "endTime": 38 },
+    { "text": "They said I rap like a robot, so call me Rap-bot", "startTime": 38, "endTime": 41 },
+    { "text": "But for me to rap like a computer it must be in my genes", "startTime": 41, "endTime": 44 },
+    { "text": "I got a laptop in my back pocket", "startTime": 44, "endTime": 46 },
+    { "text": "My pen'll go off when I half-cock it", "startTime": 46, "endTime": 48 },
+    { "text": "Got a fat knot from that rap profit", "startTime": 48, "endTime": 50 }
+  ]
+}

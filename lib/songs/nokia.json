@@ -1,0 +1,481 @@
+{
+    "id": "nokia",
+    "title": "NOKIA",
+    "artist": "Drake",
+    "audioSrc": "/audio/NOKIA.mp3",
+    "bpm": 140,
+    "difficulty": "medium",
+    "coverArt": "/covers/nokia_cover.jpeg",
+    "lyrics": [
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 0.09,
+        "endTime": 2.1
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 2.1,
+        "endTime": 4.08
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 4.08,
+        "endTime": 5.8
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 5.8,
+        "endTime": 7.73
+      },
+      {
+        "text": "Who's callin' my phone? (Who, who?)",
+        "startTime": 7.73,
+        "endTime": 9.71
+      },
+      {
+        "text": "Who's callin' my phone? (Who, Who?)",
+        "startTime": 9.71,
+        "endTime": 11.51
+      },
+      {
+        "text": "Who's callin' my phone? (Yeah, yeah)",
+        "startTime": 11.51,
+        "endTime": 13.49
+      },
+      {
+        "text": "Who's callin' my phone? (OVO Sound, 2025)",
+        "startTime": 13.49,
+        "endTime": 15.4
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 15.4,
+        "endTime": 17.36
+      },
+      {
+        "text": "Who's callin' my phone?",
+        "startTime": 17.36,
+        "endTime": 18.66
+      },
+      {
+        "text": "Is it Stacy? (Who's callin' my phone?)",
+        "startTime": 18.66,
+        "endTime": 20.45
+      },
+      {
+        "text": "Is it Becky? (Who's callin' my phone?)",
+        "startTime": 20.45,
+        "endTime": 22.36
+      },
+      {
+        "text": "Is it Keisha? (Who's callin' my phone?)",
+        "startTime": 22.36,
+        "endTime": 24.38
+      },
+      {
+        "text": "Is it Annie? (Who's callin' my phone?)",
+        "startTime": 24.38,
+        "endTime": 26.12
+      },
+      {
+        "text": "Was it Dani? (Who's callin' my phone?)",
+        "startTime": 26.12,
+        "endTime": 27.92
+      },
+      {
+        "text": "Is it PARTY? (Who's callin' my phone?)",
+        "startTime": 27.92,
+        "endTime": 29.94
+      },
+      {
+        "text": "Where's the function? (Where the fuck the function?)",
+        "startTime": 29.94,
+        "endTime": 31.88
+      },
+      {
+        "text": "Send the addy (where the fuck the function?)",
+        "startTime": 31.88,
+        "endTime": 34.83
+      },
+      {
+        "text": "The way I feel right now, I feel like we need to be all alone",
+        "startTime": 34.83,
+        "endTime": 38.41
+      },
+      {
+        "text": "So if you're just playin' around, you need to tell your girl",
+        "startTime": 38.41,
+        "endTime": 40.52
+      },
+      {
+        "text": "\"Take your fine ass home,\" and that's real",
+        "startTime": 40.52,
+        "endTime": 42.53
+      },
+      {
+        "text": "Stop teasin' me, yeah, what? Stop teasin' me",
+        "startTime": 42.53,
+        "endTime": 45.49
+      },
+      {
+        "text": "I could change your life so easily",
+        "startTime": 45.49,
+        "endTime": 47.27
+      },
+      {
+        "text": "I keep beggin' you to stay, but you're leavin' me",
+        "startTime": 47.27,
+        "endTime": 50.45
+      },
+      {
+        "text": "Leavin' me, we got sticks in the club illegally",
+        "startTime": 50.45,
+        "endTime": 52.99
+      },
+      {
+        "text": "Got the whole 6ix side, they believe in me",
+        "startTime": 52.99,
+        "endTime": 54.83
+      },
+      {
+        "text": "We got members east of the DVP",
+        "startTime": 54.83,
+        "endTime": 56.77
+      },
+      {
+        "text": "We got members west on the 401",
+        "startTime": 56.77,
+        "endTime": 58.56
+      },
+      {
+        "text": "We had a lock on the game, but it's more to come",
+        "startTime": 58.56,
+        "endTime": 60.56
+      },
+      {
+        "text": "You gotta pop that ass 'til the morning come",
+        "startTime": 60.56,
+        "endTime": 62.43
+      },
+      {
+        "text": "You want shots for the girls? Then order some",
+        "startTime": 62.43,
+        "endTime": 65.05
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that?)",
+        "startTime": 65.05,
+        "endTime": 66.84
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 66.84,
+        "endTime": 68.7
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 68.7,
+        "endTime": 70.67
+      },
+      {
+        "text": "Who's callin' my phone? (Who's callin' that shit?)",
+        "startTime": 70.67,
+        "endTime": 72.57
+      },
+      {
+        "text": "Who's callin' my phone? (Who, who?)",
+        "startTime": 72.57,
+        "endTime": 74.31
+      },
+      {
+        "text": "Who's callin' my phone? (Who, who?)",
+        "startTime": 74.31,
+        "endTime": 76.38
+      },
+      {
+        "text": "Who's callin' my phone? (Who, who?)",
+        "startTime": 76.38,
+        "endTime": 78.36
+      },
+      {
+        "text": "Who's callin' my- (ay)",
+        "startTime": 78.36,
+        "endTime": 79.62
+      },
+      {
+        "text": "Is it Stacy? (Who's callin' my phone?)",
+        "startTime": 79.62,
+        "endTime": 81.43
+      },
+      {
+        "text": "Is it Becky? (Who's callin' my phone?)",
+        "startTime": 81.43,
+        "endTime": 83.21
+      },
+      {
+        "text": "Is it Keisha? (Who's callin' my phone?)",
+        "startTime": 83.21,
+        "endTime": 85.17
+      },
+      {
+        "text": "Is it Ashley? (Who's callin' my phone?)",
+        "startTime": 85.17,
+        "endTime": 87.19
+      },
+      {
+        "text": "Was it Dani? (Who's callin' my phone?)",
+        "startTime": 87.19,
+        "endTime": 89.09
+      },
+      {
+        "text": "Is it PARTY? (Who's callin' my phone?)",
+        "startTime": 89.09,
+        "endTime": 90.99
+      },
+      {
+        "text": "Where's the function? (Where the fuck the function?)",
+        "startTime": 90.99,
+        "endTime": 92.82
+      },
+      {
+        "text": "Send the addy (where the fuck the function?)",
+        "startTime": 92.82,
+        "endTime": 98.74
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 98.74,
+        "endTime": 103.49
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 103.49,
+        "endTime": 107.95
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 107.95,
+        "endTime": 113.54
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 113.54,
+        "endTime": 114.61
+      },
+      {
+        "text": "Let me see you do your dance, let me see you twirl",
+        "startTime": 114.61,
+        "endTime": 117.09
+      },
+      {
+        "text": "Shakin' ass in the club with your homegirls",
+        "startTime": 117.09,
+        "endTime": 119.23
+      },
+      {
+        "text": "Take a pic for the 'Gram, show the whole world (show the whole world), yeah",
+        "startTime": 119.23,
+        "endTime": 122.58
+      },
+      {
+        "text": "Is that your bestie? I'ma ice both of y'all like Gretzky",
+        "startTime": 122.58,
+        "endTime": 126.05
+      },
+      {
+        "text": "I'ma at you like bless me",
+        "startTime": 126.05,
+        "endTime": 128.32
+      },
+      {
+        "text": "Hit the dance floor, get nasty, impress me",
+        "startTime": 128.32,
+        "endTime": 131.72
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 131.72,
+        "endTime": 132.83
+      },
+      {
+        "text": "Let me see you do your dance, let me see you twirl",
+        "startTime": 132.83,
+        "endTime": 135.1
+      },
+      {
+        "text": "Shakin' ass in the club with your homegirls",
+        "startTime": 135.1,
+        "endTime": 137.38
+      },
+      {
+        "text": "Take a pic for the 'Gram, show the whole world (show the whole world), yeah",
+        "startTime": 137.38,
+        "endTime": 140.66
+      },
+      {
+        "text": "Is that your bestie? I'ma ice both of y'all like Gretzky",
+        "startTime": 140.66,
+        "endTime": 144.15
+      },
+      {
+        "text": "I'ma at you like bless me",
+        "startTime": 144.15,
+        "endTime": 146.31
+      },
+      {
+        "text": "Hit the dance floor, get nasty, impress me",
+        "startTime": 146.31,
+        "endTime": 149.86
+      },
+      {
+        "text": "Ay, how many hos in this club?",
+        "startTime": 149.86,
+        "endTime": 152.11
+      },
+      {
+        "text": "Is it just me and you, my love?",
+        "startTime": 152.11,
+        "endTime": 154.39
+      },
+      {
+        "text": "I don't mean to call you no ho",
+        "startTime": 154.39,
+        "endTime": 156.06
+      },
+      {
+        "text": "I just heard about the things that you do, my love",
+        "startTime": 156.06,
+        "endTime": 158.39
+      },
+      {
+        "text": "And you're just like me, if it's true, my love, ay",
+        "startTime": 158.39,
+        "endTime": 161.14
+      },
+      {
+        "text": "You could see right through my love, ay",
+        "startTime": 161.14,
+        "endTime": 163.48
+      },
+      {
+        "text": "I see your waist shrunk, my love, ay",
+        "startTime": 163.48,
+        "endTime": 165.43
+      },
+      {
+        "text": "You got some bass in the trunk, my love, damn",
+        "startTime": 165.43,
+        "endTime": 168.36
+      },
+      {
+        "text": "How many hos in this club?",
+        "startTime": 168.36,
+        "endTime": 170.17
+      },
+      {
+        "text": "Is it really just me, my love?",
+        "startTime": 170.17,
+        "endTime": 172.31
+      },
+      {
+        "text": "You know my dad 'nem pimpin' for real",
+        "startTime": 172.31,
+        "endTime": 174.05
+      },
+      {
+        "text": "You ever been down to Memphis, Tennessee, my love? Uh",
+        "startTime": 174.05,
+        "endTime": 177.06
+      },
+      {
+        "text": "I ain't sayin' I agree, my love",
+        "startTime": 177.06,
+        "endTime": 178.73
+      },
+      {
+        "text": "I'm just tellin' you the things that I see, my love",
+        "startTime": 178.73,
+        "endTime": 180.88
+      },
+      {
+        "text": "I got drinks, jokes, sex, and cash",
+        "startTime": 180.88,
+        "endTime": 183.15
+      },
+      {
+        "text": "Those are four things I can guarantee, my love, ay",
+        "startTime": 183.15,
+        "endTime": 186.09
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 186.09,
+        "endTime": 187.12
+      },
+      {
+        "text": "Let me see you do your dance, let me see you twirl",
+        "startTime": 187.12,
+        "endTime": 189.45
+      },
+      {
+        "text": "Shakin' ass in the club with your homegirls",
+        "startTime": 189.45,
+        "endTime": 191.59
+      },
+      {
+        "text": "Take a pic for the 'Gram, show the whole world (show the whole world), yeah",
+        "startTime": 191.59,
+        "endTime": 194.75
+      },
+      {
+        "text": "Is that your bestie? I'ma ice both of y'all like Gretzky",
+        "startTime": 194.75,
+        "endTime": 198.33
+      },
+      {
+        "text": "I'ma at you like bless me",
+        "startTime": 198.33,
+        "endTime": 200.63
+      },
+      {
+        "text": "Hit the dance floor, get nasty, impress me",
+        "startTime": 200.63,
+        "endTime": 204.08
+      },
+      {
+        "text": "Baby girl",
+        "startTime": 204.08,
+        "endTime": 205.26
+      },
+      {
+        "text": "Let me see you do your dance, let me see you twirl",
+        "startTime": 205.26,
+        "endTime": 207.46
+      },
+      {
+        "text": "Shakin' ass in the club with your homegirls",
+        "startTime": 207.46,
+        "endTime": 209.77
+      },
+      {
+        "text": "Take a pic for the 'Gram, show the whole world (show the whole world), yeah",
+        "startTime": 209.77,
+        "endTime": 213.12
+      },
+      {
+        "text": "Is that your bestie? I'ma ice both of y'all like Gretzky",
+        "startTime": 213.12,
+        "endTime": 216.51
+      },
+      {
+        "text": "I'ma at you like bless me",
+        "startTime": 216.51,
+        "endTime": 218.81
+      },
+      {
+        "text": "Hit the dance floor, get nasty, impress me",
+        "startTime": 218.81,
+        "endTime": 221.81
+      }
+    ]
+  }
